@@ -1,0 +1,57 @@
+/* Mimie's Closet admin theme — same palette as the storefront */
+:root {
+    --primary: #ff6b9d;
+    --primary-fg: #fff;
+
+    --body-fg: #f3eef7;
+    --body-bg: #121016;
+    --body-quiet-color: #ab9fc0;
+    --body-loud-color: #fff;
+
+    --header-color: #fff;
+    --header-branding-color: #ffd166;
+    --header-bg: #1e1a24;
+    --header-link-color: #ffd166;
+
+    --breadcrumbs-fg: #ab9fc0;
+    --breadcrumbs-link-fg: #ffd166;
+    --breadcrumbs-bg: #1e1a24;
+
+    --link-fg: #ffd166;
+    --link-hover-color: #ff6b9d;
+    --link-selected-fg: #ff6b9d;
+
+    --module-bg: #1e1a24;
+    --module-text: #f3eef7;
+    --module-link-color: #ffd166;
+
+    --border-color: #322c3d;
+    --hairline-color: #322c3d;
+
+    --button-bg: #ff6b9d;
+    --button-fg: #fff;
+    --button-hover-bg: #e0558a;
+    --default-button-bg: #ff6b9d;
+    --default-button-hover-bg: #e0558a;
+
+    --object-tools-bg: #ff6b9d;
+    --object-tools-hover-bg: #e0558a;
+
+    --darkened-bg: #1a1720;
+    --selected-bg: #262030;
+    --selected-row: #262030;
+}
+
+#header { border-bottom: 1px solid var(--border-color); }
+div.breadcrumbs { background: var(--breadcrumbs-bg); }
+
+.module h2, .module caption, .inline-group h2 {
+    background: var(--darkened-bg);
+    color: var(--header-branding-color);
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button {
+    border-radius: 8px;
+}
+
+#content { padding: 20px 24px; }

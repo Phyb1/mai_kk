@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITE_NAME }} — Shop the latest arrivals{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>{{ SITE_NAME }}</h1>
+    <p>Fresh styles, straight to your WhatsApp.</p>
+    <a href="{% url 'catalog:product_list' %}" class="btn">Shop now</a>
+</section>
+
+<section class="categories">
+    {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}" class="category-pill">{{ category.name }}</a>
+    {% endfor %}
+</section>
+
+{% if featured_products %}
+<section class="featured">
+    <h2>Featured</h2>
+    <div class="product-grid">
+        {% for product in featured_products %}
+            {% include "partials/product_card.html" %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+{% endblock %}
