@@ -10,16 +10,14 @@ urlpatterns = [
     path("", include("apps.core.urls")),
 ]
 
-# Serve static and media explicitly for Passenger sub-URI deployments
-# This works even when STATIC_URL = '/onspot/static/' because Django matches
-# against PATH_INFO after SCRIPT_NAME is stripped by Passenger
+# Serve static and media with the /mai_kk/ prefix
+# Passenger strips /mai_kk from SCRIPT_NAME, so Django matches this
 urlpatterns += [
-    re_path(r"^static/(?P<path>.*)$", static_serve, {"document_root": settings.STATIC_ROOT}),
-    re_path(r"^media/(?P<path>.*)$", static_serve, {"document_root": settings.MEDIA_ROOT}),
+    re_path(r"^mai_kk/static/(?P<path>.*)$", static_serve, {"document_root": settings.STATIC_ROOT}),
+    re_path(r"^mai_kk/media/(?P<path>.*)$", static_serve, {"document_root": settings.MEDIA_ROOT}),
 ]
 
-# Keep this for DEBUG if you also want runserver to work with /media/
 if settings.DEBUG:
     urlpatterns += [
-        re_path(r"^media/(?P<path>.*)$", static_serve, {"document_root": settings.MEDIA_ROOT}),
+        re_path(r"^mai_kk/media/(?P<path>.*)$", static_serve, {"document_root": settings.MEDIA_ROOT}),
     ]
