@@ -10,14 +10,12 @@ urlpatterns = [
     path("", include("apps.core.urls")),
 ]
 
-# Serve static and media with the /mai_kk/ prefix
-# Passenger strips /mai_kk from SCRIPT_NAME, so Django matches this
+# Explicit static/media routes — needed because this app is deployed under
+# a Passenger sub-URI. Passenger strips that prefix before Django sees the
+# request, so WhiteNoise's own "does path start with STATIC_URL" check can
+# never match once STATIC_URL includes the sub-path (needed for correct
+# hrefs). Django's URL resolver handles the stripped path correctly.
 urlpatterns += [
-    re_path(r"^mai_kk/static/(?P<path>.*)$", static_serve, {"document_root": settings.STATIC_ROOT}),
-    re_path(r"^mai_kk/media/(?P<path>.*)$", static_serve, {"document_root": settings.MEDIA_ROOT}),
+    re_path(r"^static/(?P<path>.*)$", static_serve, {"document_root": settings.STATIC_ROOT}),
+    re_path(r"^media/(?P<path>.*)$", static_serve, {"document_root": settings.MEDIA_ROOT}),
 ]
-
-if settings.DEBUG:
-    urlpatterns += [
-        re_path(r"^mai_kk/media/(?P<path>.*)$", static_serve, {"document_root": settings.MEDIA_ROOT}),
-    ]

@@ -73,24 +73,13 @@ TIME_ZONE = "Africa/Harare"
 USE_I18N = True
 USE_TZ = True
 
-#fix for static on subdomains
-STATIC_URL = "/mai_kk/static/"
+STATIC_URL = config("STATIC_URL", default="/static/")
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# Use this instead of WhiteNoise manifest storage for subpath deploys
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
-    },
-}
-
-MEDIA_URL = "/mai_kk/media/"  # <-- add /mai_kk/ here too
+MEDIA_URL = config("MEDIA_URL", default="/media/")
 MEDIA_ROOT = BASE_DIR / "media"
-
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
